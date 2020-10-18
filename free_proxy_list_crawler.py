@@ -1,13 +1,4 @@
-import selenium
-
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
-
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-import aiohttp
-import asyncio
 
 from proxy_crawler import ProxyCraweler
 from item import Proxy
@@ -42,15 +33,10 @@ class FreeProxyListCrawler(ProxyCraweler):
             port = tcells[2].text
             protocol = tcells[-3].text
             proxy = Proxy(ip, port, Proxy.Protocol(protocol))
+            print(proxy)
             self.got_proxies.append(proxy)
 
-    def close(self):
-        print(self.got_proxies)
 
-        with open('list.txt', 'w') as file:
-            for proxy in self.got_proxies:
-                print(str(proxy))
-                file.write(str(proxy)+'\n')
 
     def next(self):
         pager_ul = self.driver.find_element(By.CSS_SELECTOR, 'body > div.wrapper > div.container > div > div > div.content-list-pager-wrapper > ul')

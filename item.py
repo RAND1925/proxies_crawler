@@ -7,6 +7,8 @@ from enum import Enum
 class Proxy:
 
     class Protocol(Enum):
+        http = 'http'
+        https = 'https'
         HTTP = 'http'
         HTTPS = 'https'
         SOCK4 = 'sock4'
